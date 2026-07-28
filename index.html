@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+  <body style="background-color: rgb(137, 240, 206);">
+
+    <div 
+    style="position:absolute; width:100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0,0,0,0.125); color: #fff; justify-content: space-between; gap: 32px;">
+
+      <p style="margin-left: 16px; font-weight:700;background-color: rgba(256,256,256,0.125); padding: 4px 12px; border-radius: 16px;">
+        MY OS 
+      </p>
+
+      <p style ="margin-left: 16px; background-color:rgba(256,256,256,0.25); padding:4px 12px; border-radius:16px;">
+        You Learn Something new everyday
+      </p>
+
+      <p id="timeElement" 
+        style="margin-right:16px; background-color:(256,256,256.0125); padding: 4px 12px; border-radius:16px;">
+          Time
+      </p>
+
+    </div>
+  
+    <div style="position: absolute; top: 50% ; left: 50%; 
+  transform: translate (-50%, -50%); padding: 16px; border: solid; width:fit-content; border-radius: 16px">
+
+    <h1>Welcome to my OS</h1>
+
+    <p>Hello World</p>
+
+    <h2>this is my first one!</h2>
+
+    <h3>Wish me luck this time!</h3>
+
+    <h4>!!!</h4>
+    
+    </div>
+
+    <script>
+
+      setInterval(function () {
+        document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
+      },1000);
+
+    </script>
+
+
+  </body>
+
+</html> 
