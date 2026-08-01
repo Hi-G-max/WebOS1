@@ -1,50 +1,99 @@
 <!DOCTYPE html>
 <html>
 
-  <body style="background-color: rgb(137, 240, 206);">
+<head>
+  <title>knowledge</title>
+  <style>
+    .closebutton {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  background-color: #ec948b;
+  border-radius: 16px;
+  border: solid 1px rgba(0, 0, 0, 0.25);
+  margin-left: 6px;
+}
 
-    <div 
-    style="position:absolute; width:100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0,0,0,0.125); color: #fff; justify-content: space-between; gap: 32px;">
+.window {
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  position: absolute;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.125);
+}
 
-      <p style="margin-left: 16px; font-weight:700;background-color: rgba(256,256,256,0.125); padding: 4px 12px; border-radius: 16px;">
-        MY OS 
-      </p>
+.windowheader{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: move;
+  justify-content: center;
+  margin-top: 8px;
+}
 
-      <p style ="margin-left: 16px; background-color:rgba(256,256,256,0.25); padding:4px 12px; border-radius:16px;">
-        You Learn Something new everyday
-      </p>
+.headertext{
+  margin: 0px;
+  color: #fff;
+  font-weight: 500;
+}
 
-      <p id="timeElement" 
-        style="margin-right:16px; background-color:(256,256,256.0125); padding: 4px 12px; border-radius:16px;">
-          Time
-      </p>
 
-    </div>
+  </style>
+</head>
   
-    <div style="position: absolute; top: 50% ; left: 50%; 
-  transform: translate (-50%, -50%); padding: 16px; border: solid; width:fit-content; border-radius: 16px">
 
+  <body style="background-image: url('images/stars.jpg'); background-size: cover;">
+
+    <div
+    style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.125); color: #fff; justify-content: space-between; gap: 32px;">
+
+        <p
+          style="margin-left: 16px; font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px;">
+            MY OS
+        </p>
+
+        <p style="margin-left: 16px; background-color: rgba(256, 256, 256, 0.25); padding: 4px 12px; border-radius: 16px;">
+            You learn something new everyday! 
+        </p>
+
+        <p id = "timeElement"
+          style="margin-right: 16px; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px;">
+            Time
+        </p>
+  </div>
+  
+    <div id="welcomemessage" style="position: absolute; top: 50% ; left: 50%; 
+  transform: translate (-50%, -50%); padding: 16px; border: solid; width:fit-content; border-radius: 16px; backdrop-filter: blur(10px); background-color: rgba(0,0,0,0.125); color: #fff; text-align: center;">
+
+	
     <h1>Welcome to my OS</h1>
 
     <p>Hello World</p>
 
     <h2>this is my first one!</h2>
 
-    <h3>Wish me luck this time!</h3>
+    <h3>Wish me luck!</h3>
 
     <h4>!!!</h4>
     
     </div>
 
-    <script>
+ <div class="window" id="window"
+    style=" top: calc(50% - 90px); left: 20px;">
+    <div class="windowheader" 
+      id = "windowheader">
+      <div class="closebutton" id="welcomeclose" ></div>
+      <p class="headertext">Welcome</p>
+    </div>
+    <div style="background-color: #fff; margin: 6px; border-radius: 12px; width: 360px; padding: 16px;">
+      
+      <p>Drag me</p>
+    </div>
+  </div>
 
-      setInterval(function () {
-        document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
-      },1000);
-
-    </script>
-
-
+ <script src="script.js"></script>
   </body>
 
 </html> 
