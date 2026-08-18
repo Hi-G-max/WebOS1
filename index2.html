@@ -45,12 +45,11 @@
 
 
   <body style="background-image: url('images/stars.jpg'); background-size: cover;">
-
+// top bar with time and welcome button
     <div
     style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.125); color: #fff; justify-content: space-between; gap: 32px;">
 
-        <p
-          style="margin-left: 16px; font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px;"cursor: pointer id="welcomeopen">
+        <p id="welcomeopen" style="margin-left: 16px; font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px; cursor: pointer;">
             MY OS
         </p>
 
@@ -63,7 +62,7 @@
             Time
         </p>
   </div>
-  
+  // welcome message in the middle of the screen
     <div id="welcomemessage" style="position: absolute; top: 50% ; left: 50%; 
   transform: translate (-50%, -50%); padding: 16px; border: solid; width:fit-content; border-radius: 16px; backdrop-filter: blur(10px); background-color: rgba(0,0,0,0.125); color: #fff; text-align: center;">
 
@@ -94,6 +93,54 @@
     </div>
   </div>
 
+<div id="notesopen" style="padding-top:65px; padding-left:65px;">
+  <div style="text-align:center; padding:16px; width:fit-content;cursor: pointer;">
+    <img src="images/notes.png" style="width:64px; height:64px;border-radius:20px;">
+    <p style="margin:0px;color:#fff; ">Notes</p>
+
+  </div>
+</div>
+ 
+<div class="window" id="notes"
+    style=" top: 50%; left: 50%;transform: translate(-50%, -50%); display:none;">
+    <div  id="notesheader"
+      class="windowheader">
+       <div class="closebutton" id="notesclose" ></div>
+      <p class="headertext">Notes</p>
+    </div>
+
+     <div
+      style="background-color: #fff; margin: 6px; border-radius: 12px; width: 520px; height: 480px; padding: 16px; font-family: Courier; display: flex;aspect-ratio:16/9;resize:both; overflow: auto;">
+      <div contenteditable="true" style="background-color:f9f9f9; width:200px; margin-right: 16px; padding:16px; border-radius:15px;">
+        welcome
+        <span style="font-size:13px;">17/08/2026</span>
+        </br>
+        <span style="font-size:9px">To resize window, drag from the bottom left corner. To move window, drag from the top bar. To close window click the red button on the top left corner. To open window click the icon on the desktop.</span>
+      </div>
+
+      <div contenteditable="true" style="overflow-y: scroll;padding:16px;">
+        <span>Welcome to <strong>Notes</strong>
+      </br>
+      </br>
+        this is a place wher I am goiing to write down my thoughts and ideas. or try to...
+      </br>
+    </br>
+    </br>
+    </br>
+      as I <del>once said</del> <ins>always say now :)</ins>
+    </span>
+    <blockquote style="background-color:#e0dfdf; margin-top:16px;margin-bottom:0px; padding:16px; border-radius:15px;">
+      <i>Try, Try, Till you fly
+      </br>
+      ~ unknown
+      </i>
+    </blockquote>
+    <span>
+      Now let's figure this out step by step and see where it takes us.
+    </span>
+    </div>
+    </div>
+    </div>
 
 
     <script> 
@@ -118,13 +165,14 @@
     openWindow(windowElement);
   });
 
-   
+
 	setInterval(function () {
   	 document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
     	}, 1000);
 	
 	
       dragElement (document.getElementById("window"))
+      dragElement (document.getElementById("notes"))
 
       function dragElement(element) {
         var initialX = 0;
@@ -170,18 +218,51 @@ if (document.getElementById(element.id + "header")) {
   }
 }
 
-if (document.getElementById(elmnt.id + "header")) {
-	// if present, the header is where you move the DIV from:
-	document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-} else {
-	// otherwise, move the DIV from anywhere inside the DIV:
-	elmnt.onmousedown = dragMouseDown;
+var selectedIcon = undefined;
+
+function selectIcon(element) {
+  element.classList.add("selected");
+  selectedIcon = element
+} 
+
+function deselectIcon(element) {
+  element.classList.remove("selected");
+  selectedIcon = undefined
+} 
+
+function handleIconTap(element) {
+  if (element.classList.contains("selected")) {
+    deselectIcon(element)
+    openWindow(notesWindow);
+  } else {
+    selectIcon(element)
+  }
 }
 
 
+  const notesElement = document.getElementById("notes");
+  const notesClose = document.getElementById("notesclose");
+  const notesOpen = document.getElementById("notesopen");
+
+  function closenotes(element) {
+    element.style.display = "none";
+  }
+
+  function opennotes(element) {
+    element.style.display = "flex";
+  }
+
+    notesClose.addEventListener("click", function (e) {
+    e.stopPropagation();
+    closenotes(notesElement);
+  });
+
+   notesOpen.addEventListener("click", function () {
+    opennotes(notesElement);
+  });
+
+   
     </script>
 
-
   </body>
-
-</html> 
+</html>
