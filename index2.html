@@ -44,7 +44,7 @@
 </head>
 
 
-  <body style="background-image: url('images/stars.jpg'); background-size: cover;">
+  <body style="background-image: url('images/stars.jpg'); background-size: cover;background-repeat: no-repeat;background-attachment: fixed; background-position:center;">
 // top bar with time and welcome button
     <div
     style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.125); color: #fff; justify-content: space-between; gap: 32px;">
@@ -93,7 +93,7 @@
     </div>
   </div>
 
-<div id="notesopen" style="padding-top:65px; padding-left:65px;">
+<div id="notesopen" style="padding-top:65px; padding-left:65px;position:relative;z-index:10;">
   <div style="text-align:center; padding:16px; width:fit-content;cursor: pointer;">
     <img src="images/notes.png" style="width:64px; height:64px;border-radius:20px;">
     <p style="margin:0px;color:#fff; ">Notes</p>
@@ -150,41 +150,50 @@
   const welcomeOpen = document.getElementById("welcomeopen");
 
   function closeWindow(element) {
-    element.style.display = "none";
+    if (element) element.style.display = "none";
   }
 
   function openWindow(element) {
-    element.style.display = "flex";
+    if (element) element.style.display = "flex";
   }
 
+if(welcomeClose && windowElement){
   welcomeClose.addEventListener("click", function () {
     closeWindow(windowElement);
   });
+}
 
+if(welcomeOpen && windowElement){
    welcomeOpen.addEventListener("click", function () {
     openWindow(windowElement);
   });
+}
 
-
+//clock 
 	setInterval(function () {
-  	 document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
+  	 const timeElement = document.querySelector("#timeElement");
+  	 if (timeElement) {
+    	  timeElement.innerHTML = new Date().toLocaleString();
+  	 }
     	}, 1000);
 	
-	
+	//drag and drop functionality
       dragElement (document.getElementById("window"))
       dragElement (document.getElementById("notes"))
 
       function dragElement(element) {
+        if (!element) return;
         var initialX = 0;
         var initialY = 0;
         var currentX = 0;
         var currentY = 0;
       
-if (document.getElementById(element.id + "header")) {
-       document.getElementById(element.id + "header").onmousedown = startDragging;
-  } else {
-       element.onmousedown = startDragging;
-  }
+const header = document.getElementById(element.id + "header");
+       if (header) {
+         header.onmousedown = startDragging;
+       } else {
+         element.onmousedown = startDragging;
+       }
 
    function startDragging(e) {
     e = e || window.event;
@@ -194,11 +203,11 @@ if (document.getElementById(element.id + "header")) {
     initialY = e.clientY;
    
     document.onmouseup = stopDragging;
-    document.onmousemove = dragElement;
+    document.onmousemove = elementDrag;
   }
 
  
-  function dragElement(e) {
+  function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
    
@@ -232,10 +241,10 @@ function deselectIcon(element) {
 
 function handleIconTap(element) {
   if (element.classList.contains("selected")) {
-    deselectIcon(element)
-    openWindow(notesWindow);
+    deselectIcon(element);
+    openWindow(notesElement);
   } else {
-    selectIcon(element)
+    selectIcon(element);
   }
 }
 
@@ -244,23 +253,19 @@ function handleIconTap(element) {
   const notesClose = document.getElementById("notesclose");
   const notesOpen = document.getElementById("notesopen");
 
-  function closenotes(element) {
-    element.style.display = "none";
-  }
 
-  function opennotes(element) {
-    element.style.display = "flex";
-  }
-
+  if (notesClose && notesElement) {
     notesClose.addEventListener("click", function (e) {
     e.stopPropagation();
-    closenotes(notesElement);
+    closeWindow(notesElement);
   });
+  }
 
+  if (notesOpen && notesElement) {
    notesOpen.addEventListener("click", function () {
-    opennotes(notesElement);
+    openWindow(notesElement);
   });
-
+  }
    
     </script>
 
