@@ -45,9 +45,9 @@
 
 
   <body style="background-image: url('images/stars.jpg'); background-size: cover;background-repeat: no-repeat;background-attachment: fixed; background-position:center;">
-// top bar with time and welcome button
+
     <div
-    style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.125); color: #fff; justify-content: space-between; gap: 32px;">
+    style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.125); color: #fff; justify-content: space-between; gap: 32px; position:relative; z-index:2; ">
 
         <p id="welcomeopen" style="margin-left: 16px; font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px; cursor: pointer;">
             MY OS
@@ -62,7 +62,7 @@
             Time
         </p>
   </div>
-  // welcome message in the middle of the screen
+  
     <div id="welcomemessage" style="position: absolute; top: 50% ; left: 50%; 
   transform: translate (-50%, -50%); padding: 16px; border: solid; width:fit-content; border-radius: 16px; backdrop-filter: blur(10px); background-color: rgba(0,0,0,0.125); color: #fff; text-align: center;">
 
@@ -80,7 +80,7 @@
     </div>
 
  <div class="window" id="window"
-    style=" top: calc(50% - 90px); left: 20px; ">
+    style=" top: calc(50% - 90px); left: 20px; position:absolute;z-index:3;">
     <div  id="windowheader"
       class="windowheader">
        <div class="closebutton" id="welcomeclose" ></div>
@@ -93,8 +93,8 @@
     </div>
   </div>
 
-<div id="notesopen" style="padding-top:65px; padding-left:65px;position:relative;z-index:10;">
-  <div style="text-align:center; padding:16px; width:fit-content;cursor: pointer;">
+<div style="padding-top:65px; padding-left:65px;position:relative;z-index:2;">
+  <div id="notesopen" style="text-align:center; padding:16px; width:fit-content;cursor: pointer;">
     <img src="images/notes.png" style="width:64px; height:64px;border-radius:20px;">
     <p style="margin:0px;color:#fff; ">Notes</p>
 
@@ -102,7 +102,7 @@
 </div>
  
 <div class="window" id="notes"
-    style=" top: 50%; left: 50%;transform: translate(-50%, -50%); display:none;">
+    style=" top: 50%; left: 50%;transform: translate(-50%, -50%); display:none;position:absolute;z-index:10;">
     <div  id="notesheader"
       class="windowheader">
        <div class="closebutton" id="notesclose" ></div>
