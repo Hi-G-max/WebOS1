@@ -111,33 +111,25 @@
 
      <div
       style="background-color: #fff; margin: 6px; border-radius: 12px; width: 520px; height: 480px; padding: 16px; font-family: Courier; display: flex;aspect-ratio:16/9;resize:both; overflow: auto;">
-      <div contenteditable="true" style="background-color:f9f9f9; width:200px; margin-right: 16px; padding:16px; border-radius:15px;">
-        welcome
-        <span style="font-size:13px;">17/08/2026</span>
-        </br>
-        <span style="font-size:9px">To resize window, drag from the bottom left corner. To move window, drag from the top bar. To close window click the red button on the top left corner. To open window click the icon on the desktop.</span>
-      </div>
+      
+      <div id= "sidebar-container" contenteditable="false" style="background-color:#dfdcdc; width:200px; margin-right: 16px; padding:32px; border-radius:15px;">
+       
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;flex-shrink:0;display:flex; flex-direction:row; align-items:center; justify-content:space-between;">
+          <h3 style="margin:0px; padding:5px;">Notes</h3>
+          <div>
+            <button onclick="addNewNote()" style="margin-right:8px;padding:5px;">+</button>
+            <button onclick="deleteCurrentNote()" style="margin-right:8px;padding:5px;">-</button>
+            <button onclick="saveCurrentNote()" style="padding:5px;">💾</button>
+          </div>
+        </div>
 
-      <div contenteditable="true" style="overflow-y: scroll;padding:16px;">
-        <span>Welcome to <strong>Notes</strong>
-      </br>
-      </br>
-        this is a place wher I am goiing to write down my thoughts and ideas. or try to...
-      </br>
-    </br>
-    </br>
-    </br>
-      as I <del>once said</del> <ins>always say now :)</ins>
-    </span>
-    <blockquote style="background-color:#e0dfdf; margin-top:16px;margin-bottom:0px; padding:16px; border-radius:15px;">
-      <i>Try, Try, Till you fly
-      </br>
-      ~ unknown
-      </i>
-    </blockquote>
-    <span>
-      Now let's figure this out step by step and see where it takes us.
-    </span>
+        <div id="sidebar" style="overflow-y:auto; flex-grow:1;background-color: #dfdcdc;"></div>
+      
+      </div> 
+
+
+      <div id="noteContent" contenteditable="true" style="overflow-y: scroll;padding:16px;">
+        
     </div>
     </div>
     </div>
@@ -267,6 +259,98 @@ function handleIconTap(element) {
   });
   }
    
+  let currentNoteIndex = 0;
+  var content =[
+   {
+    title: "Welcome",
+    date:"17/08/2026",
+    content: `
+    <p contenteditable="True">
+      <span contenteditable ="true">Welcome to <strong>Notes</strong>
+      </br>
+      this is a place where I am going to write down my thoughts and ideas. or try to...
+      </br>
+      as I <del>once said</del> <ins>always say now :)</ins>
+      </span>
+      <blockquote style="background-color:#e0dfdf; margin-top:16px;margin-bottom:0px; padding:16px; border-radius:15px;" contenteditable="true">
+      <i>Try, Try, Till you fly
+      </br>
+      ~ unknown
+      </i>
+      </blockquote>
+      <span contenteditable="true">
+      Now let's figure this out step by step and see where it takes us.
+      </span>
+    </p>
+    `
+   }
+   ]
+
+   function setNoteContent(index) {
+    const noteContentElement = document.querySelector("#noteContent");
+    if (noteContentElement && content[index]) {
+      noteContentElement.innerHTML = content[index].content;
+      currentNoteIndex = index;
+    }
+  }
+  setNoteContent(0);
+
+  function addNewNote() {
+    const newNote = {
+      title: "New Note",
+      date: new Date().toLocaleDateString(),
+      content: "<p contenteditable='true'>New note content...</p>"
+    };
+    content.push(newNote);
+    renderSidebar();
+    setNoteContent(content.length - 1);
+  }
+
+  function deleteCurrentNote() {
+    if (content.length > 1) {
+      content.splice(currentNoteIndex, 1);
+      renderSidebar();
+      setNoteContent(0);
+    } else {
+      alert("Cannot delete the last note.");
+    }
+  }
+
+  function saveCurrentNote() {
+    const noteContentElement = document.querySelector("#noteContent");
+    if (noteContentElement) {
+      content[currentNoteIndex].content = noteContentElement.innerHTML;
+      alert("Note saved!");
+    }
+  }
+
+  function addToSidebar(index){
+    var sidebar = document.getElementById("sidebar");
+    if (!sidebar) return;
+    var note= content[index];
+    var newDiv = document.createElement("div");
+  
+  newDiv.innerHTML = `<strong>${note.title}</strong><br><span style="font-size:12px;">${note.date}</span>`;
+
+  newDiv.addEventListener("click", function() {
+    setNoteContent(index);
+  });
+
+  sidebar.appendChild(newDiv);
+  }
+
+  function renderSidebar(){
+    var sidebar = document.getElementById("sidebar");
+    if (sidebar) sidebar.innerHTML = "";
+    for (let i = 0; i < content.length; i++) {
+    addToSidebar(i);
+  }
+
+  }
+  renderSidebar();
+  setNoteContent(0);
+  
+
   </script>
 
   </body>
