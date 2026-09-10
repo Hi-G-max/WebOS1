@@ -80,7 +80,7 @@
     </div>
 
  <div class="window" id="window"
-    style=" top: calc(50% - 90px); left: 20px; position:absolute;z-index:3;">
+    style=" top: calc(50% - -120px); left: 20px; position:absolute;z-index:3;">
     <div  id="windowheader"
       class="windowheader">
        <div class="closebutton" id="welcomeclose" ></div>
@@ -134,12 +134,40 @@
     </div>
     </div>
 
+<!--new app -->
+<div style="padding-top:65px; padding-left:65px;position:relative;z-index:2;">
+  <div id="fortfactopen" style="text-align:center; padding:16px; width:fit-content;cursor: pointer;">
+    <img src="images/4-leaf clover.jpg" style="width:64px; height:64px;border-radius:20px;">
+    <p style="margin:0px;color:#fff; ">Fortfact</p> 
+
+  </div>
+</div>
+
+    <div class="window" id="fortfactapp" style="top: 50%; left: 50%;transform: translate(-50%, -50%); display:none;position:absolute;z-index:10;">
+      <div id="fortfactheader"
+        class="windowheader">
+         <div class="closebutton" id="fortfactclose" ></div>
+        <p class="headertext">Fortune & Random Fact</p>
+    </div>
+
+    <div style="background-color:#fff;margin:6px;border-radius:12px;width:360px;padding:16px;text-align:center;display:flex;aspect-ratio:16/9;resize:both;overflow:auto;">
+      <div id="displayBox" style="min-height: 80px; display: flex; align-items: center; justify-content: center; background: #f4f4f9; border-radius: 8px; padding: 12px; margin-bottom: 16px; font-style: italic; color: #333;">
+      Click a button below to reveal your fate or a cool fact!
+    </div>
+
+    <button id="fortunebtn" style="padding:8px;margin-right:8px;border-radius:6px;color:grey;cursor:pointer;">Get Fortune 🥠</button>
+    <button id="factbtn" style="padding:8px;margin-right:8px;border-radius:6px;color:grey;cursor:pointer;">Get Random Fact 💡</button>
+
+    </div>
+    </div>
+
 
   <script> 
 
-  const windowElement = document.getElementById("window");
-  const welcomeClose = document.getElementById("welcomeclose");
-  const welcomeOpen = document.getElementById("welcomeopen");
+function setupwindow(windowid,openid,closeid){
+  const windowElement = document.getElementById(windowid);
+  const welcomeClose = document.getElementById(closeid);
+  const welcomeOpen = document.getElementById(openid);
 
   function closeWindow(element) {
     if (element) element.style.display = "none";
@@ -160,6 +188,11 @@ if(welcomeOpen && windowElement){
     openWindow(windowElement);
   });
 }
+}
+
+setupwindow("window", "welcomeopen", "welcomeclose");
+setupwindow("notes", "notesopen", "notesclose");
+setupwindow("fortfactapp", "fortfactopen", "fortfactclose");
 
 //clock 
 	setInterval(function () {
@@ -172,6 +205,7 @@ if(welcomeOpen && windowElement){
 	//drag and drop functionality
       dragElement (document.getElementById("window"))
       dragElement (document.getElementById("notes"))
+      dragElement (document.getElementById("fortfactapp"))
 
       function dragElement(element) {
         if (!element) return;
@@ -240,24 +274,6 @@ function handleIconTap(element) {
   }
 }
 
-
-  const notesElement = document.getElementById("notes");
-  const notesClose = document.getElementById("notesclose");
-  const notesOpen = document.getElementById("notesopen");
-
-
-  if (notesClose && notesElement) {
-    notesClose.addEventListener("click", function (e) {
-    e.stopPropagation();
-    closeWindow(notesElement);
-  });
-  }
-
-  if (notesOpen && notesElement) {
-   notesOpen.addEventListener("click", function () {
-    openWindow(notesElement);
-  });
-  }
    
   let currentNoteIndex = 0;
   var content =[
@@ -349,7 +365,40 @@ function handleIconTap(element) {
   }
   renderSidebar();
   setNoteContent(0);
-  
+
+  const fortunes =[
+    "You will have a great day today!",
+    "Good things are coming your way.",
+    "You will achieve your goals.",
+    "Happiness is around the corner.",
+    "You will find success in your endeavors.",
+    "Errors in your code will lead to unexpected adventures."
+  ];
+
+  const randomFacts =[
+    "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly good to eat.",
+    "Octopuses have three hearts and blue blood.",
+    "A group of flamingos is called a 'flamboyance'.",
+    "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after 38 minutes.",
+    "Bananas are berries, but strawberries aren't.",
+    "The first computer bug was an actual moth found in a computer in 1947."
+  ];
+
+  const displayBox = document.getElementById("displayBox");
+  const fortuneBtn = document.getElementById("fortunebtn");
+  const factBtn = document.getElementById("factbtn");
+
+  if (fortuneBtn && factBtn && displayBox) {
+    fortuneBtn.addEventListener("click", () => {
+      const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+      displayBox.textContent = `🥠 "${randomFortune}"`;
+    });
+
+    factBtn.addEventListener("click", () => {
+      const randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)];
+      displayBox.textContent = `💡 "${randomFact}"`;
+    });
+  }
 
   </script>
 
