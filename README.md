@@ -2,7 +2,8 @@ MY OS — Web Desktop Environment
 
 MY OS is a custom, interactive web-based desktop environment built to simulate a desktop operating system directly inside a web browser. It features a clean, atmospheric user interface with draggable components, desktop apps, and real-time widgets.  
 
-  <img width="1354" height="585" alt="image" src="https://github.com/user-attachments/assets/fb8a1de9-bb6d-477a-8b6b-ac10371e5548" />  
+  <img width="1358" height="582" alt="image" src="https://github.com/user-attachments/assets/e6121c3d-a6a0-455b-85fa-d8499b1dae35" />
+ 
 
     
 🚀 Live Demo  
