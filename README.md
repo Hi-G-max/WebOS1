@@ -23,8 +23,10 @@ https://hi-g-max.github.io/WebOS1/
 
 MY OS relies on vanilla web tech to mimic a complex windows-management subsystem. Instead of heavy overhead frameworks, it coordinates state through native JavaScript Event Listeners to manage active screen coordinates, dynamic z-indexing for overlapping windows, and DOM manipulations. This keeps the environment lightweight, snappy, and dependency-free.
 
-🤝 Credits & Acknowledgements
-Background Wallpaper: Sourced via public domain atmospheric photography.
+🤝 Credits & Acknowledgements  
+
+Background Wallpaper: Sourced via public domain atmospheric photography.  
+
 Core Development: Built independently as a lightweight front-end exploration into custom browser-based user interfaces.
 
 
