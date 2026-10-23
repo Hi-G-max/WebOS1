@@ -14,15 +14,15 @@ https://hi-g-max.github.io/WebOS1/
 
 Features
 
-• Interactive UI: A dark-themed, translucent window layout laid over a starry-night background.  
+• Interactive UI: A dark-themed layout laid over a starry-night background.  
 
-• Draggable Windows: Floating windows (like the Welcome box) can be dragged, closed, and repositioned across the workspace.  
+• Draggable Windows: Floating windows (like the Welcome box) can be dragged, closed, and repositioned across the space.  
 
 • Live System Metrics: A top bar displaying the project name, quote, and a live, updating system clock.  
 
-• Notes Application: A lightweight text editor app where you can write notes for each day and/or save, delete or create a new note.  
+• Notes Application: A text editor app where you can write notes for each day and/or save, delete or create a new note.  
 
-• Fortfact App: An entertainment module designed to give random facts or fortunes.    
+• Fortfact App: An fun app designed to give random facts or fortunes.    
 
  
 
@@ -30,6 +30,6 @@ Credits/Acknowledgements
 
 Background Wallpaper: Sourced via public domain photography.  
 
-Core Development: Built independently by me as an exploration into custom browser-based user interfaces.
+Core Development: Built independently by me.
 
 
