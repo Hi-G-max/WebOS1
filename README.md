@@ -1,6 +1,6 @@
 MY OS — Web Desktop Environment
 
-MY OS is a custom, interactive web-based desktop environment built to act like a desktop operating system directly inside a web browser.  
+MY OS is a custom web-based desktop environment built to act like a desktop operating system.  
 
   <img width="1358" height="582" alt="image" src="https://github.com/user-attachments/assets/e6121c3d-a6a0-455b-85fa-d8499b1dae35" />
  
@@ -22,7 +22,7 @@ Features
 
 • Notes Application: A text editor app where you can write notes for each day and/or save, delete or create a new note.  
 
-• Fortfact App: An fun app designed to give random facts or fortunes.    
+• Fortfact App: A fun app designed to give random facts or fortunes.    
 
  
 
