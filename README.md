@@ -1,35 +1,35 @@
 MY OS — Web Desktop Environment
 
-MY OS is a custom, interactive web-based desktop environment built to simulate a desktop operating system directly inside a web browser. It features a clean, atmospheric user interface with draggable components, desktop apps, and real-time widgets.  
+MY OS is a custom web-based desktop environment built to act like a desktop operating system.  
 
-  <img width="1354" height="585" alt="image" src="https://github.com/user-attachments/assets/fb8a1de9-bb6d-477a-8b6b-ac10371e5548" />  
+  <img width="1358" height="582" alt="image" src="https://github.com/user-attachments/assets/e6121c3d-a6a0-455b-85fa-d8499b1dae35" />
+ 
 
     
-🚀 Live Demo  
+Live Demo  
 
-https://hi-g-max.github.io/WebOS1/
+https://hi-g-max.github.io/WebOS1/   
 
 
-✨ Features
 
-• Interactive UI: A dark-themed, translucent window layout laid over an atmospheric starry-night background.  
+Features
 
-• Draggable Windows: Floating application modules (like the Welcome box) can be dragged, closed, and repositioned smoothly across the workspace.  
+• Interactive UI: A dark-themed layout laid over a starry-night background.  
 
-• Live System Metrics: A dynamic top navigation bar displaying the active project name, a quote, and a live, updating system clock.  
+• Draggable Windows: Floating windows (like the Welcome box) can be dragged, closed, and repositioned across the space.  
 
-• Notes Application: A lightweight text editor application accessible straight from the desktop.  
+• Live System Metrics: A top bar displaying the project name, quote, and a live clock.  
 
-•Fortfact Suite: An interactive entertainment module designed to generate randomized fortune cookies and trivia facts on demand.  
+• Notes Application: A text editor app where you can write notes for each day and/or save, delete or create a new note.  
 
-🧠 How It Works
+• Fortfact App: A fun app designed to give random facts or fortunes.    
 
-MY OS relies on vanilla web tech to mimic a complex windows-management subsystem. Instead of heavy overhead frameworks, it coordinates state through native JavaScript Event Listeners to manage active screen coordinates, dynamic z-indexing for overlapping windows, and DOM manipulations. This keeps the environment lightweight, snappy, and dependency-free.
+ 
 
-🤝 Credits & Acknowledgements  
+Credits/Acknowledgements  
 
-Background Wallpaper: Sourced via public domain atmospheric photography.  
+Background Wallpaper: Sourced via public domain photography.  
 
-Core Development: Built independently as a lightweight front-end exploration into custom browser-based user interfaces.
+Core Development: Built independently by me.
 
 
