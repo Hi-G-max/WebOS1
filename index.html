@@ -85,7 +85,7 @@
   color:#fff;
 }
 
-.widget-controls{
+.widget-btns{
   display:flex;
   gap:5px;
   justify-content:center;
@@ -137,7 +137,7 @@
       <p>Hello! Welcome to my OS. You can write notes or if you are bored, you can look into the future to see your fortune or learn interesting facts.</p>
 
     </div>
-  </div>
+  </div>   
 
 <div style="padding-top:65px; padding-left:65px;position:relative;z-index:2;">
   <div id="notesopen" style="text-align:center; padding:16px; width:fit-content;cursor: pointer;">
@@ -145,11 +145,11 @@
     <p style="margin:0px;color:#fff; ">Notes</p>
 
   </div>
-</div>
+</div>  
  
 <div class="window" id="notes"
     style=" top: 50%; left: 50%;transform: translate(-50%, -50%); display:none;position:absolute;z-index:10;">
-    <div  id="notesheader"
+    <div  id="notesheader" 
       class="windowheader">
        <div class="closebutton" id="notesclose" ></div>
       <p class="headertext">Notes</p>
@@ -176,21 +176,21 @@
 
       <div id="noteContent" contenteditable="true" style="overflow-y: scroll;padding:16px;">
         
-    </div>
+    </div>  
     </div>
     </div>
 
-<!--new app -->
+<!--fortfact app -->
 <div style="padding-top:65px; padding-left:65px;position:relative;z-index:2;">
   <div id="fortfactopen" style="text-align:center; padding:16px; width:fit-content;cursor: pointer;">
     <img src="images/4-leaf clover.jpg" style="width:64px; height:64px;border-radius:20px;">
     <p style="margin:0px;color:#fff; ">Fortfact</p> 
 
-  </div>
+  </div>   
 </div>
 
     <div class="window" id="fortfactapp" style="top: 50%; left: 50%;transform: translate(-50%, -50%); display:none;position:absolute;z-index:10;">
-      <div id="fortfactheader"
+      <div id="fortfactheader"  
         class="windowheader">
          <div class="closebutton" id="fortfactclose" ></div>
         <p class="headertext">Fortune & Random Fact</p>
@@ -204,16 +204,17 @@
     <button id="fortunebtn" style="padding:8px;margin-right:8px;border-radius:6px;color:grey;cursor:pointer;">Get Fortune 🥠</button>
     <button id="factbtn" style="padding:8px;margin-right:8px;border-radius:6px;color:grey;cursor:pointer;">Get Random Fact 💡</button>
 
-    </div>
-    </div>
-
+  </div>      
+  </div>  
+  
 
     <!--NEW-->
     <div style="position:fixed;z-index:2;top:90px;right:20px;background:#333;border-radius:8px;width:fit-content;border:#3f2e51 solid 1px;">
 
       <div id="dock-toggle-btn" style =" text-align:center; padding:16px; width:fit-content;cursor:pointer;">
+        <img src="images/widget.png" style="width:32px; height:32px;border-radius:20px;">
         <p style="margin:0px;color:#fff; ">Widgets</p>
-      
+         
       </div>
     </div>
 
@@ -226,7 +227,7 @@
       <div class="widget-card">
         <h3>Stopwatch</h3>
         <div id="stopwatch-display" class="timer-display">00:00:00</div>
-        <div class="widget-controls">
+        <div class="widget-btns">
           <button onclick="startStopwatch()">Start</button>
           <button onclick="stopStopwatch()">Stop</button>
           <button onclick="resetStopwatch()">Reset</button>
@@ -234,12 +235,33 @@
       </div>
 
       <div class="widget-card">
-      <h3>Event Countdown</h3>
-      <div class="widget-controls">
+      <h3>Event Countdown</h3>  
+      <div class="widget-btns">
         <input type="datetime-local" id="countdown-input" onchange="setCountdown()">
       </div>
       <div id="countdown-display" class="timer-display">No Timer Set</div>
     </div>
+
+    </aside>
+
+    <!-- NEW calculator app -->
+     <div style="padding-top:65px; padding-left:65px; position:relative; z-index:2; left:50px;">
+  <div id="calculatoropen" style="text-align:center; padding:16px; width:fit-content; cursor: pointer;">
+    <img src="images/calculator.jpg" style="width:64px; height:64px; border-radius:20px;">
+    <p style="margin:0px; color:#fff;">Calculator</p> 
+  </div>   
+</div>
+
+
+<div class="window" id="calculator" style="top: 50%; left: 50%; transform: translate(-50%, -50%); position:absolute; z-index:10; padding:16px; border-radius:12px; width:220px; height:fit-content;background-color: rgba(30, 30, 30, 0.75); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);display:none;">
+  <div id="calcheader" class="windowheader">   
+    <div class="closebutton" id="calcclose"></div>
+    <p class="headertext">Calculator</p>
+  </div>
+
+
+
+
 
   <script> 
 
@@ -273,6 +295,7 @@ if(welcomeOpen && windowElement){
 setupwindow("window", "welcomeopen", "welcomeclose");
 setupwindow("notes", "notesopen", "notesclose");
 setupwindow("fortfactapp", "fortfactopen", "fortfactclose");
+setupwindow("calculator", "calculatoropen", "calcclose");
 
 //clock 
 	setInterval(function () {
@@ -286,12 +309,13 @@ setupwindow("fortfactapp", "fortfactopen", "fortfactclose");
       dragElement (document.getElementById("window"))
       dragElement (document.getElementById("notes"))
       dragElement (document.getElementById("fortfactapp"))
+      dragElement (document.getElementById("calculator"))
 
       function dragElement(element) {
         if (!element) return;
         var beforeX = 0;
         var beforeY = 0;
-        var nowX = 0;
+        var nowX = 0;  
         var nowY = 0;
       
 const header = document.getElementById(element.id + "header");
@@ -381,14 +405,14 @@ function handleIconTap(element) {
       
     </div>
     `
-   }
+   }   
    ]
 
    function setNoteContent(index) {
     const noteContentElement = document.querySelector("#noteContent");
     if (noteContentElement && content[index]) {
       noteContentElement.innerHTML = content[index].content;
-      currentNoteIndex = index;
+      currentNoteIndex = index;  
     }
   }
   setNoteContent(0);
@@ -488,7 +512,7 @@ function handleIconTap(element) {
 
   }
 
-//new
+//NEW
 const dock=document.getElementById("right-dock");
 const toggleBtn=document.getElementById("dock-toggle-btn");
 const closeBtn=document.getElementById("dock-close-btn");
@@ -570,12 +594,12 @@ function startStopwatch() {
  
  // I only used AI to help me with a bug and then to give me ideas but I never copied that code into here.
  //
- // the safety checks I had looked up have been completely removed, and for the math, I just looked it up on a site I don't remember what that site was though.
+ //  for the maths, I just looked it up on a site I don't remember what that site was though.
  // the dragging logic i also asked for help and but just nudges in the right direction and guidance and also I looked and copied some of my previous code i had done for a presonal project some time ago that used dragging logic.
  //other than that i did it by myself with the help of the guide and if i have written anything similar before in my previous code.
-  
+  //for the stopwatch and countdown i researched multiple websites i don't remember the site name though unfortunately.
 // Every component, HTML structure, style choice, and logical connection here was manually wired and assembled by me here. 
-// I have completed all the requested changes to make this codebase entirely my own. Thank you for the re-review! o7
+// Thanks o7
  
  </script>
 
