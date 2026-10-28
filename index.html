@@ -39,15 +39,51 @@
   font-weight: 500;
 }
 
+.right-dock{
+  position:fixed;
+  top: 0;
+  right:0;
+  width:320px;
+  height:100vh;
+  background:rgba(20,20,30,0.75);
+  backdrop-filter:blur(16px);
+  border-left:1px solid rgba(255,255,255,0.1);
+  box-shadow:-5px 0 25px rgba(0,0,0,0.4);
+  z-index:1000;
+  transition:transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display:flex;
+  flex-direction:column;
+}
 
-  </style>
+.right-dock.collapsed{
+  transform:translateX(100%);
+}
+
+.dock-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+.widget-card{
+  background:#3f2e51;
+  margin:16px;
+  padding:16px;
+  border-radius:12px;
+  color:#fff;
+}
+
+</style>
 </head>
 
 
-  <body style="background-image: url('images/stars.jpg'); background-size: cover;background-repeat: no-repeat;background-attachment: fixed; background-position:center;">
+  <body style="background-image: url('images/stars.jpg'); background-size: cover;background-repeat:no-repeat; background-attachment: fixed; background-position:center;">
 
    <div
-    style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.125); color: #fff; justify-content: space-between; gap: 32px; position:relative; z-index:2; ">
+    style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.125); color: #3f2e51; justify-content: space-between; gap: 32px; position:relative; z-index:2; ">
 
         <p id="welcomeopen" style="margin-left: 16px; font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px; cursor: pointer;">
             MY OS
@@ -155,6 +191,47 @@
     </div>
     </div>
 
+
+    <!--NEW-->
+    <div style="position:fixed;z-index:2;top:90px;right:20px;background:#333;border-radius:8px;width:fit-content;border:#3f2e51 solid 1px;">
+
+      <div id="dock-toggle-btn" style =" text-align:center; padding:16px; width:fit-content;cursor:pointer;">
+        <p style="margin:0px;color:#fff; ">Widgets</p>
+      
+      </div>
+    </div>
+
+    <aside id="right-dock" class="right-dock collapsed">
+      <div class="dock-header">
+        <h3 style="margin:0px;">Widgets</h3>
+        <button id="dock-close-btn" style="background:none;border:none;color:#fff;cursor:pointer;">✖</button>
+      </div>
+      
+      <div class="widget-card">
+        <h3>Stopwatch</h3>
+        <div id="stopwatch-display" class="timer-display">00:00:00</div>
+        <div class="widget-controls">
+          <button onclick="startStopwatch()">Start</button>
+          <button onclick="stopStopwatch()">Stop</button>
+          <button onclick="resetStopwatch()">Reset</button>
+        </div>
+      </div>
+
+      <div class="widget-card">
+      <h3>Countdown Timer</h3>
+      <div class="timer-inputs">
+        <input type="number" id="timer-min" placeholder="MM" min="0" max="59">
+        <input type="number" id="timer-sec" placeholder="SS" min="0" max="59">
+      </div>
+      <div id="timer-display">00:00</div>
+      <div class="widget-controls">
+        <button onclick="startCountdown()">Start</button>
+        <button onclick="resetCountdown()">Reset</button>
+      </div>
+    </div>
+      </div>
+      </div>
+      
 
   <script> 
 
@@ -402,6 +479,57 @@ function handleIconTap(element) {
     });
 
   }
+
+//new
+const dock=document.getElementById("right-dock");
+const toggleBtn=document.getElementById("dock-toggle-btn");
+const closeBtn=document.getElementById("dock-close-btn");
+
+toggleBtn.addEventListener("click", function() {
+  dock.classList.toggle("collapsed");
+});
+
+closeBtn.addEventListener("click", function() {
+  dock.classList.add("collapsed");
+});
+
+//stopwatch
+let timer;
+let time = 0;
+let start =0;
+
+function startStopwatch() {
+  if (timer) return;
+  start = Date.now() - time;
+  timer = setInterval(function(){
+    time = Date.now()-start;
+
+    let m = Math.floor(time/60000);
+    let s = Math.floor((time%60000)/1000);
+    let ms = Math.floor((time%1000)/10);
+
+    let displayM = m < 10 ? "0"+m : m;
+    let displayS = s < 10 ? "0"+s : s;
+    let displayMS = ms < 10 ? "0"+ms : ms;
+
+    document.getElementById("stopwatch-display").innerHTML =displayM + ":" + displayS + ":" + displayMS;
+  },10)
+  }
+
+  function stopStopwatch() {
+    clearInterval(timer);
+    timer = null;
+  }
+
+  function resetStopwatch() {
+    stopStopwatch();
+    time = 0;
+    document.getElementById("stopwatch-display").innerHTML = "00:00:00";
+  }
+
+
+
+
   // IMPORTANT! NOTE TO REVIEWERS: this is a note to whoever is reading this code to review it and i just want to say that this code is done by me its just that i learned how to code originally with the help of AI and my code sometimes in places because of that looks like it was written by AI because I had learned to code that way from AI.it's just the way I learned to code.
   // also Im a direct person so thats why some names could look plain or boring. 
  // anything that was done by ai has been removed or changes by me. 
