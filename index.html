@@ -76,6 +76,22 @@
   color:#fff;
 }
 
+.timer-display{
+  font-size:26px;
+  font-weight: bold;
+  font-family: monospace;
+  text-align:center;
+  margin:10px  0;
+  color:#fff;
+}
+
+.widget-controls{
+  display:flex;
+  gap:5px;
+  justify-content:center;
+  margin-top:5px;
+}
+
 </style>
 </head>
 
@@ -83,7 +99,7 @@
   <body style="background-image: url('images/stars.jpg'); background-size: cover;background-repeat:no-repeat; background-attachment: fixed; background-position:center;">
 
    <div
-    style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.125); color: #3f2e51; justify-content: space-between; gap: 32px; position:relative; z-index:2; ">
+    style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.125); color: #fff; justify-content: space-between; gap: 32px; position:relative; z-index:2; ">
 
         <p id="welcomeopen" style="margin-left: 16px; font-weight: 700; background-color: rgba(256, 256, 256, 0.125); padding: 4px 12px; border-radius: 16px; cursor: pointer;">
             MY OS
@@ -218,20 +234,12 @@
       </div>
 
       <div class="widget-card">
-      <h3>Countdown Timer</h3>
-      <div class="timer-inputs">
-        <input type="number" id="timer-min" placeholder="MM" min="0" max="59">
-        <input type="number" id="timer-sec" placeholder="SS" min="0" max="59">
-      </div>
-      <div id="timer-display">00:00</div>
+      <h3>Event Countdown</h3>
       <div class="widget-controls">
-        <button onclick="startCountdown()">Start</button>
-        <button onclick="resetCountdown()">Reset</button>
+        <input type="datetime-local" id="countdown-input" onchange="setCountdown()">
       </div>
+      <div id="countdown-display" class="timer-display">No Timer Set</div>
     </div>
-      </div>
-      </div>
-      
 
   <script> 
 
@@ -527,6 +535,32 @@ function startStopwatch() {
     document.getElementById("stopwatch-display").innerHTML = "00:00:00";
   }
 
+  //countdown
+  let countdownTimer;
+
+  function setCountdown(){
+    clearInterval(countdownTimer);
+    const input = document.getElementById("countdown-input").value;
+    const targetDate = new Date(input).getTime();
+
+    countdownTimer = setInterval(function(){
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if(distance < 0){
+        clearInterval(countdownTimer);
+        document.getElementById("countdown-display").innerText = "⏰ Time's Up!";
+        return;
+  }
+
+  const days = Math.floor(distance/(1000*60*60*24));
+  const hours = Math.floor((distance%(1000*60*60*24))/((1000*60*60)));
+  const minutes = Math.floor((distance%(1000*60*60))/((1000*60)));
+  const seconds = Math.floor((distance%(1000*60))/1000);
+
+  document.getElementById("countdown-display").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    },1000);
+  }
 
 
 
