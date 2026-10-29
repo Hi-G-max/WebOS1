@@ -161,7 +161,7 @@
     </div>
 
  <div class="window" id="window"
-    style=" bottom:16px;left:500px; position:absolute;z-index:3;">
+    style=" top: calc(50% - -120px); left: 25%; position:absolute;z-index:3;">
     <div  id="windowheader"
       class="windowheader">
        <div class="closebutton" id="welcomeclose" ></div>
@@ -329,7 +329,7 @@
 
 //setup function to close and open the windows 
 function setupwindow(windowid,openid,closeid){
-  const windowElement = document.getElementById(windowid);
+  const windowElement = document.getElementById(windowid);  
   const welcomeClose = document.getElementById(closeid);
   const welcomeOpen = document.getElementById(openid);
 
@@ -421,8 +421,10 @@ const header = document.getElementById(element.id + "header");
 
   
 // for the notes app
-  let currentNoteIndex = 0;
-  var content =[
+  let content = JSON.parse(localStorage.getItem("myos_notes"));
+
+  if(!content || conent.lenght===0){
+   content =[
    {
     title: "Welcome",
     date:"17/08/2026",
@@ -447,7 +449,12 @@ const header = document.getElementById(element.id + "header");
     </div>
     `
    }   
-   ]
+   ];
+  }
+
+  function saveToLocaleStorage(){
+    localStorage.setItem("myos_notes", JSON.stringify(content));
+  }
 
    function setNoteContent(index) {
     const noteContentElement = document.querySelector("#noteContent");
@@ -459,12 +466,21 @@ const header = document.getElementById(element.id + "header");
   setNoteContent(0);
 
   function addNewNote() {
+
+    let userTitle = prompt("Enter a title for your new note:","New Note");
+
+    if (userTitle ===null) return;
+    if (userTitle.trim()===""){
+      userTitle = "Untitled Note";
+    }
+
     const newNote = {
-      title: "New Note",
+      title: userTitle,
       date: new Date().toLocaleDateString(),
       content: "<p contenteditable='true'>New note content...</p>"
     };
     content.push(newNote);
+    saveToLocaleStorage();
     renderSidebar();
     setNoteContent(content.length - 1);
   }
@@ -472,6 +488,7 @@ const header = document.getElementById(element.id + "header");
   function deleteCurrentNote() {
     if (content.length > 1) {
       content.splice(currentNoteIndex, 1);
+      saveToLocaleStorage();
       renderSidebar();
       setNoteContent(0);
     } else {
@@ -483,6 +500,7 @@ const header = document.getElementById(element.id + "header");
     const noteContentElement = document.querySelector("#noteContent");
     if (noteContentElement) {
       content[currentNoteIndex].content = noteContentElement.innerHTML;
+      saveToLocaleStorage();
       alert("Note saved!");
     }
   }
