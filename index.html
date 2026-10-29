@@ -423,7 +423,7 @@ const header = document.getElementById(element.id + "header");
 // for the notes app
   let content = JSON.parse(localStorage.getItem("myos_notes"));
 
-  if(!content || conent.lenght===0){
+  if(!content || content.length ===0){
    content =[
    {
     title: "Welcome",
@@ -450,9 +450,10 @@ const header = document.getElementById(element.id + "header");
     `
    }   
    ];
+   localStorage.setItem("myos_notes",JSON.stringify(content));
   }
 
-  function saveToLocaleStorage(){
+  function saveToLocalStorage(){
     localStorage.setItem("myos_notes", JSON.stringify(content));
   }
 
@@ -480,7 +481,7 @@ const header = document.getElementById(element.id + "header");
       content: "<p contenteditable='true'>New note content...</p>"
     };
     content.push(newNote);
-    saveToLocaleStorage();
+    saveToLocalStorage();
     renderSidebar();
     setNoteContent(content.length - 1);
   }
@@ -488,7 +489,7 @@ const header = document.getElementById(element.id + "header");
   function deleteCurrentNote() {
     if (content.length > 1) {
       content.splice(currentNoteIndex, 1);
-      saveToLocaleStorage();
+      saveToLocalStorage();
       renderSidebar();
       setNoteContent(0);
     } else {
@@ -500,7 +501,7 @@ const header = document.getElementById(element.id + "header");
     const noteContentElement = document.querySelector("#noteContent");
     if (noteContentElement) {
       content[currentNoteIndex].content = noteContentElement.innerHTML;
-      saveToLocaleStorage();
+      saveToLocalStorage();
       alert("Note saved!");
     }
   }
@@ -511,6 +512,7 @@ const header = document.getElementById(element.id + "header");
     var newDiv = document.createElement("div");
   
   newDiv.innerHTML = `<strong>${note.title}</strong><br><span style="font-size:12px;">${note.date}</span>`;
+  newDiv.style.cursor = "pointer";
 
   newDiv.addEventListener("click", function() {
     setNoteContent(index);
