@@ -662,14 +662,14 @@ function changeWallpaper(style){
 
   if(style ==='stars') {
     url = "images/stars.jpg";
-  } else if (style==='waterfall'){
-    url = "images/waterfall.png";
+  } else if (style==='waterfall'){ 
+    url = "images/waterfall.png"; 
   } else if (style === 'sunset'){
-    url = "images/Neon sunset.jpg"
+    url ="images/Neon sunset.jpg";
   }
 
   if(url !== ""){
-    document.body.style.backgroundImage = "url ('"+url+"')";
+    document.body.style.backgroundImage = "url('"+url+"')";
 
     localStorage.setItem("myos_wallpaper",style);
   }
@@ -703,7 +703,7 @@ function changeWallpaper(style){
   //wallpaper
   const savedwallpaper = localStorage.getItem("myos_wallpaper");
   if (savedwallpaper){
-    changeWallpaper(savedWallpaper);
+    changeWallpaper(savedwallpaper);
   }
 
 
