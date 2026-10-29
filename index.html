@@ -92,6 +92,41 @@
   margin-top:5px;
 }
 
+#calc-display{
+  width:100%;
+  height:45px;
+  background:rgba(0,0,0,0.4);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:8px;
+  color:#fff;
+  font-size:22px;
+  text-align:right;
+  padding: 0 10px;
+  margin-bottom:15px;
+  box-sizing:border-box;
+}
+
+.calc-btns{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.calc-btns button{
+  height:40px;
+  border:none;
+  border-radius:6px;
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition:background 0.2s;
+}
+
+.calc-btns button:hover{
+  background:rgba(255,255,255,0.2);
+}
+
 </style>
 </head>
 
@@ -126,7 +161,7 @@
     </div>
 
  <div class="window" id="window"
-    style=" top: calc(50% - -120px); left: 20px; position:absolute;z-index:3;">
+    style=" top: calc(50% - -120px); left: 25%; position:absolute;z-index:3;">
     <div  id="windowheader"
       class="windowheader">
        <div class="closebutton" id="welcomeclose" ></div>
@@ -245,9 +280,9 @@
     </aside>
 
     <!-- NEW calculator app -->
-     <div style="padding-top:65px; padding-left:65px; position:relative; z-index:2; left:50px;">
+     <div style="padding-top:65px; padding-left:65px; position:relative; z-index:2;">
   <div id="calculatoropen" style="text-align:center; padding:16px; width:fit-content; cursor: pointer;">
-    <img src="images/calculator.jpg" style="width:64px; height:64px; border-radius:20px;">
+    <img src="images/calculator2.png" style="width:64px; height:64px; border-radius:20px;">
     <p style="margin:0px; color:#fff;">Calculator</p> 
   </div>   
 </div>
@@ -259,7 +294,34 @@
     <p class="headertext">Calculator</p>
   </div>
 
+<input type="text" id="calc-display" readonly value="0">
 
+<div class="calc-btns">
+<button onclick="appendCalc('7')">7</button>
+<button onclick="appendCalc('8')">8</button>
+<button onclick="appendCalc('9')">9</button>
+<button onclick="appendCalc('/')">÷</button>
+
+<button onclick="appendCalc('4')">4</button>
+<button onclick="appendCalc('5')">5</button>
+<button onclick="appendCalc('6')">6</button>
+<button onclick="appendCalc('*')">×</button>
+
+<button onclick="appendCalc('1')">1</button>
+<button onclick="appendCalc('2')">2</button>
+<button onclick="appendCalc('3')">3</button>
+<button onclick="appendCalc('-')">-</button>
+
+<button onclick="appendCalc('0')">0</button>
+<button onclick="appendCalc('.')">.</button>
+<button onclick="appendCalc('+')">+</button>
+<button onclick="calculateResult()" style="grid-column: span 2;">=</button>
+
+  <button style="grid-column: span 4;" onclick="clearDisplay()">C</button>
+
+
+
+</div>
 
 
 
