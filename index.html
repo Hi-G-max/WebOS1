@@ -161,7 +161,7 @@
     </div>
 
  <div class="window" id="window"
-    style=" top: calc(50% - -120px); left: 25%; position:absolute;z-index:3;">
+    style=" bottom:16px;left:500px; position:absolute;z-index:3;">
     <div  id="windowheader"
       class="windowheader">
        <div class="closebutton" id="welcomeclose" ></div>
@@ -315,9 +315,9 @@
 <button onclick="appendCalc('0')">0</button>
 <button onclick="appendCalc('.')">.</button>
 <button onclick="appendCalc('+')">+</button>
-<button onclick="calculateResult()" style="grid-column: span 2;">=</button>
+<button onclick="calculateResult()">=</button>
 
-  <button style="grid-column: span 4;" onclick="clearDisplay()">C</button>
+  <button style="grid-column: span 4;" onclick="clearCalc()">C</button>
 
 
 
@@ -418,28 +418,7 @@ const header = document.getElementById(element.id + "header");
     document.onmousemove = null;
   }
 }
-//remove this? it does nothing currently
-var selectedIcon = undefined;
 
-function selectIcon(element) {
-  element.classList.add("selected");
-  selectedIcon = element
-} 
-
-function deselectIcon(element) {
-  element.classList.remove("selected");
-  selectedIcon = undefined
-} 
-
-function handleIconTap(element) {
-  if (element.classList.contains("selected")) {
-    deselectIcon(element);
-    openWindow(notesElement);
-  } else {
-    selectIcon(element);
-  }
-}
-//
   
 // for the notes app
   let currentNoteIndex = 0;
@@ -645,7 +624,31 @@ function startStopwatch() {
   const seconds = Math.floor((distance%(1000*60))/1000);
 
   document.getElementById("countdown-display").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    },1000);
+    },1000);                    
+  }
+
+  const display = document.getElementById("calc-display");
+
+  function appendCalc(value) {
+
+    if (display.value ==='0' ||  display.value ==='Error'){
+      display.value=value;
+    }
+    else{
+      display.value +=value;
+    }
+  }
+
+  function clearCalc(){
+    display.value='0';
+  }
+
+  function calculateResult(){
+    try{
+      display.value = eval(display.value);
+    } catch(error){
+      display.value='Error';
+    }
   }
 
 
