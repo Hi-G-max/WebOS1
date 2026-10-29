@@ -669,7 +669,7 @@ function changeWallpaper(style){
   }
 
   if(url !== ""){
-    document.body.style.backgroundImage = "url('"+url+"')";
+    document.body.style.backgroundImage = "url('" +url+ "')";
 
     localStorage.setItem("myos_wallpaper",style);
   }
