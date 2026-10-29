@@ -277,6 +277,16 @@
       <div id="countdown-display" class="timer-display">No Timer Set</div>
     </div>
 
+    <div class="widget-card">
+
+      <h3>System Desktop Wallpaper</h3>
+      <div class="widget-btns" style ="flex-direction:column;gap:8px;">
+        <button onclick ="changeWallpaper('stars')">Deep space (Default) </button>
+        <button onclick = "changeWallpaper('waterfall')">Misty Forest</button>
+        <button onclick="changeWallpaper('sunset')">Neon Sunset</button>
+      </div>
+    </div>
+
     </aside>
 
     <!-- NEW calculator app -->
@@ -466,8 +476,7 @@ const header = document.getElementById(element.id + "header");
   }
   setNoteContent(0);
 
-  function addNewNote() {
-
+  function addNewNote() {  
     let userTitle = prompt("Enter a title for your new note:","New Note");
 
     if (userTitle ===null) return;
@@ -594,7 +603,7 @@ let start =0;
 function startStopwatch() {
   if (timer) return;
   start = Date.now() - time;
-  timer = setInterval(function(){
+  timer = setInterval(function(){   
     time = Date.now()-start;
 
     let m = Math.floor(time/60000);
@@ -647,6 +656,26 @@ function startStopwatch() {
     },1000);                    
   }
 
+//wallpaper
+function changeWallpaper(style){
+  let url ="";
+
+  if(style ==='stars') {
+    url = "images/stars.jpg";
+  } else if (style==='waterfall'){
+    url = "images/waterfall.png";
+  } else if (style === 'sunset'){
+    url = "images/Neon sunset.jpg"
+  }
+
+  if(url !== ""){
+    document.body.style.backgroundImage = "url ('"+url+"')";
+
+    localStorage.setItem("myos_wallpaper",style);
+  }
+}
+
+//calculator
   const display = document.getElementById("calc-display");
 
   function appendCalc(value) {
@@ -669,6 +698,12 @@ function startStopwatch() {
     } catch(error){
       display.value='Error';
     }
+  }
+
+  //wallpaper
+  const savedwallpaper = localStorage.getItem("myos_wallpaper");
+  if (savedwallpaper){
+    changeWallpaper(savedWallpaper);
   }
 
 
