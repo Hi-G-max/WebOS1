@@ -40,6 +40,9 @@ Features
         • Customization: Now when you add a new note it will ask you what you want the title will be and it will use that as the title.
 
 
+To Do:  
+close button, more apps,backgrounds, bring to top
+
 Credits/Acknowledgements  
 
 Background Wallpapers: Sourced via public domain photography.  
